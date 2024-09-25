@@ -52,10 +52,10 @@ h1 {
 main {
     background-color: var(--main-body-bg);
     box-shadow: inset 0px 0px 19px 5px rgba(91, 90, 90, 0.89);
+    flex: 1;
 }
 
 .main-container {
-    flex: 1;
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
