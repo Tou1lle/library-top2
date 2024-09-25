@@ -4,7 +4,7 @@
     --header-font: bold 2.5rem "Trebuchet MS", Tahoma, sans-serif;
     --header-footer-bg: #1b2027;
     --main-body-bg: #3f4147;
-    --header-text-color: #00fff5;
+    --deco-text-color: #00fff5;
 }
 
 * {
@@ -24,7 +24,7 @@ body {
 .header-container, 
 .footer-container {
     background-color: var(--header-footer-bg);
-    color: var(--header-text-color);
+    color: var(--deco-text-color);
 }
 
 .header-container {
@@ -104,7 +104,7 @@ main {
     font: var(--header-font);
     font-size: 1.7rem;
     background-color: var(--header-footer-bg);
-    color: var(--header-text-color);
+    color: var(--deco-text-color);
     border-radius: 10px;
 }
 
@@ -123,4 +123,74 @@ button.button.read {
 
 button.button.not-read {
     background-color: red;
+}
+
+/* Dialog and form */
+::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(7px);
+}
+
+dialog {
+    height: 550px;
+    width: 350px;
+    border: 1px solid var(--deco-text-color);
+    background-color: var(--header-footer-bg);
+    border-radius: 10px;
+}
+
+.close-dialog-button {
+    border: 1px solid var(--deco-text-color);
+    background-color: var(--header-footer-bg);
+    border-radius: 50%;
+    color: var(--deco-text-color);
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+form {
+    padding: 10px;
+}
+
+label,
+input {
+    display: block;
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+label {
+    text-align: center;
+    font: 1.5rem "Trebuchet MS", Tahoma, sans-serif;
+    color: var(--deco-text-color);
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 2rem;
+}
+
+input[type="checkbox"],
+label[for="read-book"] {
+    display: inline-block;
+}
+
+.checkbox-for-styling {
+    width: max-content;
+    margin: auto;
+}
+
+.form-button-add-book {
+    display: block;
+    background-color: var(--header-footer-bg);
+    border: 1px solid var(--deco-text-color);
+    color: var(--deco-text-color);
+    margin: auto;
+    margin-top: 45px;
+    padding: 10px 20px;
+    font-size: 2rem;
+    border-radius: 20px;
 }

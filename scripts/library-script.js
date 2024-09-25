@@ -1,4 +1,7 @@
-const bookshelf = document.querySelector(".bookshelf")
+const bookshelf = document.querySelector(".bookshelf");
+const dialog = document.querySelector("dialog");
+const addBookButton = document.querySelector(".button-add-book");
+const closeDialogButton = document.querySelector(".close-dialog-button");
 
 const myLibrary = []
 
@@ -63,11 +66,26 @@ function createBookNode(book) {
     return bookDOM;
 }
 
+/**
+ * Open & close the dialog window
+ */
+function openDialog() {
+    dialog.showModal();
+}
+
+function closeDialog() {
+    dialog.close();
+}
 
 /**
  * Test
  */
 
 const harryPotter = new Book("J.K. Rowling", "Harry Potter", 500, false)
+const lotr = new Book("Tolkien", "Lord of the Rings", 600, true);
 
 const harryPotterDOM = createBookNode(harryPotter);
+const lotrDOM = createBookNode(lotr);
+
+addBookButton.addEventListener("click", openDialog);
+closeDialogButton.addEventListener("click", closeDialog);
