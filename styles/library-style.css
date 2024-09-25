@@ -101,3 +101,7 @@ main {
     color: var(--header-text-color);
     border-radius: 10px;
 }
+
+button {
+    cursor: pointer;
+}
