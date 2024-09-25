@@ -64,7 +64,7 @@ main {
     
 }
 
-.test-book {
+.book-item {
     text-align: center;
     background-color: #d9c8ae;
     display: flex;
@@ -74,7 +74,7 @@ main {
     font: var(--book-font);
 }
 
-.test-book p {
+.book-item p {
     margin: 0;
 }
 
@@ -117,10 +117,10 @@ button {
     color: white;
 }
 
-button.button-read {
+button.button.read {
     background-color: green;
 }
 
-button.button-not-read {
+button.button.not-read {
     background-color: red;
 }
