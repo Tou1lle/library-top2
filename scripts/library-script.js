@@ -61,7 +61,7 @@ function createBookNode(book) {
     bookAuthor.textContent = book.author;
     bookTitle.textContent = book.title;
     bookPages.textContent = book.pages;
-    
+
     // Button text for read/not red, add classes
     if (book.isRead) {
         bookButtonRead.textContent = "read";
@@ -99,20 +99,19 @@ function closeDialog() {
  */
 function getDataForm(event) {
     event.preventDefault();
-    if (form.checkValidity()) {
-        const author = inputAuthor.value;
-        const title = inputTitle.value;
-        const pages = inputPages.value;
-        const isRead = inputCheckbox.checked;
     
-        const book = new Book(author, title, pages, isRead);
-    
-        const bookDOM = createBookNode(book);
-        addBookToLibrary(bookDOM);
-        showBooks();
-        form.reset();
-        closeDialog()
-    }
+    const author = inputAuthor.value;
+    const title = inputTitle.value;
+    const pages = inputPages.value;
+    const isRead = inputCheckbox.checked;
+
+    const book = new Book(author, title, pages, isRead);
+
+    const bookDOM = createBookNode(book);
+    addBookToLibrary(bookDOM);
+    showBooks();
+    form.reset();
+    closeDialog()
 }
 
 /**
