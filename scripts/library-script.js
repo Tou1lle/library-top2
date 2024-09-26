@@ -1,10 +1,27 @@
+// The main body where the book items are
 const bookshelf = document.querySelector(".bookshelf");
+// Dialog and button for opening the dialog
 const dialog = document.querySelector("dialog");
 const addBookButton = document.querySelector(".button-add-book");
+// Close dialog button
 const closeDialogButton = document.querySelector(".close-dialog-button");
+// Form elements
+const formButtonAddBook = document.querySelector(".form-button-add-book");
+const inputAuthor = document.querySelector("#author");
+const inputTitle = document.querySelector("#title");
+const inputPages = document.querySelector("#pages");
+const inputCheckbox = document.querySelector("#read-book");
+const form = document.querySelector("form");
 
 const myLibrary = []
 
+/**
+ * 
+ * @param {string} author 
+ * @param {string} title 
+ * @param {*} pages 
+ * @param {boolean} isRead 
+ */
 function Book(author, title, pages, isRead) {
     this.author = author;
     this.title = title;
@@ -78,14 +95,30 @@ function closeDialog() {
 }
 
 /**
- * Test
+ * Get data from user - form
  */
+function getDataForm(event) {
+    event.preventDefault();
+    if (form.checkValidity()) {
+        const author = inputAuthor.value;
+        const title = inputTitle.value;
+        const pages = inputPages.value;
+        const isRead = inputCheckbox.checked;
+    
+        const book = new Book(author, title, pages, isRead);
+    
+        const bookDOM = createBookNode(book);
+        addBookToLibrary(bookDOM);
+        showBooks();
+        form.reset();
+        closeDialog()
+    }
+}
 
-const harryPotter = new Book("J.K. Rowling", "Harry Potter", 500, false)
-const lotr = new Book("Tolkien", "Lord of the Rings", 600, true);
-
-const harryPotterDOM = createBookNode(harryPotter);
-const lotrDOM = createBookNode(lotr);
-
+/**
+ * Event listeners for buttons
+ */
 addBookButton.addEventListener("click", openDialog);
 closeDialogButton.addEventListener("click", closeDialog);
+
+form.addEventListener("submit", getDataForm);
