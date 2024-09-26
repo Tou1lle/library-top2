@@ -1,5 +1,6 @@
 // The main body where the book items are
 const bookshelf = document.querySelector(".bookshelf");
+//const bookButtonRemove = document.querySelector(".button-remove")
 // Dialog and button for opening the dialog
 const dialog = document.querySelector("dialog");
 const addBookButton = document.querySelector(".button-add-book");
@@ -27,6 +28,7 @@ function Book(author, title, pages, isRead) {
     this.title = title;
     this.pages = pages;
     this.isRead = isRead;
+    this.index = myLibrary.length;
 }
 
 function addBookToLibrary(bookNode) {
@@ -71,6 +73,9 @@ function createBookNode(book) {
         bookButtonRead.classList.add("button", "not-read");
     }
     bookButtonRemove.textContent = "remove";
+    bookButtonRemove.classList.add("button-remove");
+    bookButtonRemove.id = book.index;
+    bookButtonRemove.addEventListener("click", removeBook);
 
     // Add classes to all elements
     bookDOM.classList.add("book-item");
@@ -114,6 +119,16 @@ function getDataForm(event) {
     closeDialog()
 }
 
+function removeBook(event) {
+    const buttonRemove = event.target;
+    const removedBooks = myLibrary.splice(buttonRemove.id, 1);
+    removedBooks[0].remove();
+
+    for(let i = buttonRemove.id; i < myLibrary.length; i++) {
+        myLibrary[i].childNodes[3].childNodes[1].id = i;
+    }
+}
+
 /**
  * Event listeners for buttons
  */
@@ -121,3 +136,4 @@ addBookButton.addEventListener("click", openDialog);
 closeDialogButton.addEventListener("click", closeDialog);
 
 form.addEventListener("submit", getDataForm);
+//bookButtonRemove.addEventListener("click", removeBook);
