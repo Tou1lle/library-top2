@@ -72,6 +72,7 @@ function createBookNode(book) {
         bookButtonRead.textContent = "not read";
         bookButtonRead.classList.add("button", "not-read");
     }
+    bookButtonRead.addEventListener("click", toggleRead)
     bookButtonRemove.textContent = "remove";
     bookButtonRemove.classList.add("button-remove");
     bookButtonRemove.id = book.index;
@@ -126,6 +127,19 @@ function removeBook(event) {
 
     for(let i = buttonRemove.id; i < myLibrary.length; i++) {
         myLibrary[i].childNodes[3].childNodes[1].id = i;
+    }
+}
+
+function toggleRead(event) {
+    const buttonRead = event.target;
+    if (buttonRead.classList.contains("read")) {
+        buttonRead.classList.remove("read");
+        buttonRead.classList.add("not-read");
+        buttonRead.textContent = "not read";
+    } else {
+        buttonRead.classList.remove("not-read");
+        buttonRead.classList.add("read");
+        buttonRead.textContent = "read";
     }
 }
 
