@@ -14,7 +14,35 @@ const inputPages = document.querySelector("#pages");
 const inputCheckbox = document.querySelector("#read-book");
 const form = document.querySelector("form");
 
-const myLibrary = []
+class Library {
+    #library;
+
+    constructor() {
+        this.#library = [];
+    }
+
+    get library() {
+        return this.#library;
+    }
+
+    addBookToLibrary(book) {
+        this.library.push(book);
+    }
+
+    showBooks() {
+        this.library.forEach(book => {
+            bookshelf.appendChild(book);
+        });
+    }
+
+    length() {
+        return this.#library.length;
+    }
+
+
+}
+
+const myLibrary = new Library();
 
 /**
  * 
@@ -28,21 +56,7 @@ function Book(author, title, pages, isRead) {
     this.title = title;
     this.pages = pages;
     this.isRead = isRead;
-    this.index = myLibrary.length;
-}
-
-function addBookToLibrary(bookNode) {
-    myLibrary.push(bookNode);
-}
-
-/**
- * Every book in the array is appended to the "bookshelf node"
- * This way it is showed on the website
- */
-function showBooks() {
-    myLibrary.forEach((book) => {
-        bookshelf.appendChild(book);
-    });
+    this.index = myLibrary.length();
 }
 
 /**
@@ -114,19 +128,19 @@ function getDataForm(event) {
     const book = new Book(author, title, pages, isRead);
 
     const bookDOM = createBookNode(book);
-    addBookToLibrary(bookDOM);
-    showBooks();
+    myLibrary.addBookToLibrary(bookDOM);
+    myLibrary.showBooks();
     form.reset();
     closeDialog()
 }
 
 function removeBook(event) {
     const buttonRemove = event.target;
-    const removedBooks = myLibrary.splice(buttonRemove.id, 1);
+    const removedBooks = myLibrary.library.splice(buttonRemove.id, 1);
     removedBooks[0].remove();
 
     for(let i = buttonRemove.id; i < myLibrary.length; i++) {
-        myLibrary[i].childNodes[3].childNodes[1].id = i;
+        myLibrary.library[i].childNodes[3].childNodes[1].id = i;
     }
 }
 
